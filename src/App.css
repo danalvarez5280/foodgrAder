@@ -1,24 +1,37 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+h1 {
+  background-color: blue;
   color: white;
+  font-family: 'Indie Flower', cursive;
+  margin: 0;
+  text-shadow: 1px 1px 5px black;
 }
 
-.App-intro {
-  font-size: large;
+.nav-bar {
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 0;
+}
+.nav {
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.7em;
+  text-decoration: none;
+  text-shadow: 1px 1px 5px black;
+  transition-duration: 1s;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.nav:hover {
+  color: orange;
+  transform: scale(1.1);
+  transition-duration: 1s;
 }
+/*.nav-text {
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  text-decoration: none;
+}*/

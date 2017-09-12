@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import MainContainer from '../containers/MainContainer';
 
-export class Login extends Component {
+export class CreateUser extends Component {
   constructor() {
     super()
     this.state = {
       email: '',
+      location: '',
+      cuisine: '',
       password: '',
     }
   };
@@ -27,6 +29,14 @@ export class Login extends Component {
             placeholder="email"
             onChange={(e) => this.grabInfo(e)} />
           <input
+            title='location' type="text" value={this.state.locaiton}
+            placeholder="location"
+            onChange={(e) => this.grabInfo(e)} />
+          <input
+            title='cuisine' type="text" value={this.state.cuisine}
+            placeholder="favorite cuisine"
+            onChange={(e) => this.grabInfo(e)} />
+          <input
             title='password' type="password" value={this.state.password}
             placeholder="password"
             onChange={(e) => this.grabInfo(e)} />
@@ -39,4 +49,4 @@ export class Login extends Component {
   }
 };
 
-export default Login;
+export default CreateUser;

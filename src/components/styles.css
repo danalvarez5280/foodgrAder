@@ -1,0 +1,22 @@
+h3 {
+  background-color: blue;
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  margin: 0;
+  text-shadow: 1px 1px 5px black;
+}
+
+.main-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.map-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

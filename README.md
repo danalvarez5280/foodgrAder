@@ -26,6 +26,7 @@ redux-thunk
 
 ## UI
 [title](/desktop/FoodGrader)
+! [Alt text] (/Users/BendersShadow/Desktop/images/FoodGrader.png)
 
 ## OverView
 

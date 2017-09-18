@@ -1,33 +1,34 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import MainContainer from '../containers/MainContainer';
-import { Route, NavLink} from 'react-router-dom';
-import MoreInfo from './MoreInfo'
+// import { Link } from 'react-router-dom'
+// import { Route, NavLink} from 'react-router-dom';
+// import MoreInfo from './MoreInfo'
 
 
 const FoodCard = ({ restaurant, setLocation }) => {
-  const link = `/${restaurant.name}`;
-  // console.log('dan5', link);
-  // console.log('potential props', restaurant);
+  const link = `${restaurant.menu_url}`;
   return (
     <div className="food-card"
-      onClick={ () => setLocation({userInput: restaurant.name})}>
+      onClick={ () => setLocation({userInput: restaurant.name,
+      userLocation: restaurant.location.locality})}>
       <h2>{ restaurant.name }</h2>
-      <p><img className='food-image' src={restaurant.featured_image} alt="image not found"/></p>
-      <p>Cuisine Type:</p>
+      <p><img className='food-image' src={restaurant.featured_image} alt="restaurant img"/></p>
+      <h3>Cuisine Type:</h3>
       <p>{ restaurant.cuisines }</p>
-      <p>Average Cost For Two:</p>
+      <h3>Address</h3>
+      <p>{ restaurant.location.address }</p>
+      <h3>Average Cost For Two:</h3>
       <p>${ restaurant.average_cost_for_two }</p>
-      <p>Rating:</p>
+      <h3>Average Rating:</h3>
       <p>{restaurant.user_rating.aggregate_rating}</p>
-      <p>Its...</p>
+      <h3>Total Reviews</h3>
+      <p>{restaurant.user_rating.votes}</p>
+      <h3>Its...</h3>
       <p>{restaurant.user_rating.rating_text}</p>
-      <Link className='favorites-nav' to={link}>
-        More Info
-      </Link>
-      <Route exact path={link} render={ () => <MoreInfo info={restaurant} /> } />
+      <a href={link} target="_blank">Menu</a>
     </div>
   )
 }
 
+// <Route exact path={link} render={ () => <MoreInfo info={restaurant} /> } />
 export default MainContainer(FoodCard);

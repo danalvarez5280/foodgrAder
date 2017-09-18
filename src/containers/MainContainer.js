@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { submitSearch, setLocation, userSearch, setLink } from '../actions/index';
+import { submitSearch, setLocation, userSearch, setLink, userFoodSearch, userFetch } from '../actions/index';
 
 
 const mapStateToProps = (store) => {
@@ -12,9 +12,9 @@ const mapStateToProps = (store) => {
       nearBy: store.foodFetch1.nearbyPlaces,
       userInput: store.setLocation.userInput,
       userLocation: store.setLocation.userLocation,
-      userCounter: store.userSearch.length,
       userLocations: store.userSearch[(store.userSearch.length - 1)],
-      moreInfoLink: store.setLink
+      moreInfoLink: store.setLink,
+      userInfo: store.userFoodSearch[(store.userFoodSearch.length -1)],
   }
 }
 
@@ -23,6 +23,8 @@ const mapDispatchToProps = (dispatch) => {
       findFood: (lat, long) => dispatch(submitSearch(lat, long)),
       setLocation: (location) => dispatch(setLocation(location)),
       userSearch: (location) => dispatch(userSearch(location)),
+      userFoodSearch: (name, locationId) => dispatch(userFoodSearch(name, locationId)),
+      locationClear: (location) => dispatch(userFetch(location)),
       setLink: (link) => dispatch(setLink(link)),
   }
 }

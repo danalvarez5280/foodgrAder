@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import MainContainer from '../containers/MainContainer';
-import firebase from '../firebase.js';
+// import firebase from '../firebase.js';
 
 export class Login extends Component {
   constructor() {

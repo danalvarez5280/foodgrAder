@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WelcomePage from './components/WelcomePage';
 import CreateUser from './components/CreateUser';
 import Login from './components/Login';
-import MoreInfo from './components/MoreInfo';
+// import MoreInfo from './components/MoreInfo';
 import { Route, NavLink} from 'react-router-dom';
 
 import './App.css';

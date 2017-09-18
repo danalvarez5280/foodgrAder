@@ -5,7 +5,6 @@ export const foodFetch1 = (foodInfo) => {
   }
 }
 
-
 export const submitSearch = (latitude, longitude) => {
   return dispatch => {
     const reqHeaders = new Headers();
@@ -35,7 +34,6 @@ export const setLocation = (location) => {
 }
 
 export const userFetch = (newFoodInfo) => {
-  console.log('newFoodInfo', newFoodInfo);
   return {
     type: 'USER_FETCH',
     newFoodInfo
@@ -43,7 +41,6 @@ export const userFetch = (newFoodInfo) => {
 }
 
 export const userSearch = (location) => {
-  console.log('location', location);
   return dispatch => {
     const reqHeaders = new Headers();
     reqHeaders.append('user-key', '653afb0849eb30d03b5f8b6072b83ffa')
@@ -58,8 +55,6 @@ export const userSearch = (location) => {
       entityType: object.entity_type
     }))
     .then(newObject => dispatch(userSearch2(newObject)))
-    // .then(object => object.location_suggestions[0])
-    // .then(object => dispatch(setLocation(object)))
   }
 }
 
@@ -74,9 +69,27 @@ export const userSearch2 = (object) => {
     .then(data => data.json())
     .then(object => object.best_rated_restaurant)
     .then(object => dispatch(userFetch(object)))
-    // .then(thing2 => console.log('thing2', thing2))
-    // .then(object => object.location_suggestions[0])
-    // .then(object => dispatch(setLocation(object)))
+  }
+}
+
+export const foodSearch = (places) => {
+  return {
+    type: 'FOOD_SEARCH',
+    places
+  }
+}
+
+export const userFoodSearch = (name, locationId) => {
+  return dispatch => {
+    const reqHeaders = new Headers();
+    reqHeaders.append('user-key', '653afb0849eb30d03b5f8b6072b83ffa')
+    fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=${locationId}&q=${name}`, {
+      method: 'GET',
+      headers: reqHeaders
+    })
+    .then(data => data.json())
+    .then(object => object.restaurants)
+    .then(array => dispatch(foodSearch(array)))
   }
 }
 

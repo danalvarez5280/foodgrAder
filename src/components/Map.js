@@ -9,54 +9,51 @@ export class MyMap extends Component{
   constructor(){
     super();
     this.state = {
-      foodName: '',
-      query: ''
+      userInput: '',
+      userLocation: '',
     }
-    // this.getPosition = this.getPosition.bind(this);
-
   }
 
-  // componentDidMount(){
-  //   this.getPosition()
-  // }
-
-  grabLocation(query) {
-    console.log('current props', this.props);
-    // this.props.setLocation(query)
-
+  grabLocation(object) {
+    this.props.setLocation(object)
+    this.props.userSearch(object.userLocation)
+    this.setState({
+      userLocation: '',
+    })
   }
 
-
-  // getPosition() {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     let currentLocation = position.coords
-  //     // document.getElementById('startLat').innerHTML = currentLocation.latitude;
-  //     // document.getElementById('startLon').innerHTML = currentLocation.longitude;
-  //     this.props.findFood(currentLocation.latitude, currentLocation.longitude)
-  //   })
-  // };
+  grabInfo(e) {
+    this.setState({
+      [e.target.title] : e.target.value
+    })
+  }
 
   render() {
-    const { location, nearBy } = this.props;
-    const param1 = nearBy[0].restaurant.name
-    console.log('param1', param1)
-    const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDAOPlM-JOakw3AcI0FwW23r6L-Rhgc-lI&q=${param1},${location}`
+    const { location, nearBy, userInput, userLocation, userLocations } = this.props;
+
+    const autoParam = nearBy[0].restaurant.name;
+    const userSelection = userLocations ? userLocations[0].restaurant.name : autoParam;
+    const autoLocation = location;
+    const userParam1 = userInput ? userInput : userSelection;
+    const userParam2 = userLocation ? userLocation : autoLocation;
+    // const param2 = userParam2 ? userParam2 : autoLocation;
+    const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDAOPlM-JOakw3AcI0FwW23r6L-Rhgc-lI&q=${userParam1},${userSelection}`
     return(
       <div className="map-area">
         <p>{this.props.neighborhood}</p>
         <p>{this.props.location}</p>
-        <div className="main-form">
-          <form>
+        <div>
+          <form className="main-form">
             <input
               className='input-field'
-              title='location' type="text" value={this.state.query}
-              placeholder="location"
+              title='userLocation' type="text" value={this.state.userLocation}
+              placeholder="search for location"
               onChange={(e) => this.grabInfo(e)} />
             <input
               className='input-field form-button'
               type='button'
-              onClick={ (e) => {this.grabLocation(this.state.query)}}
-              value="Where You At" />
+              onClick={ (e) => {this.grabLocation(this.state)}}
+              value="Food Search" />
           </form>
         </div>
           <Iframe

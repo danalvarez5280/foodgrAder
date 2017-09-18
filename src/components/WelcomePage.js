@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import MainContainer from '../containers/MainContainer';
 import FoodCard from './FoodCard';
-// import Iframe from 'react-iframe';
 import MyMap from './Map';
 import './styles.css'
-
-
-// import { Redirect } from 'react-router-dom';
-// import googleMapsKey from '../key/googleMapsKey';
 
 export class WelcomePage extends Component{
 
@@ -18,15 +13,27 @@ export class WelcomePage extends Component{
   getPosition() {
     navigator.geolocation.getCurrentPosition((position) => {
       let currentLocation = position.coords
-      // document.getElementById('startLat').innerHTML = currentLocation.latitude;
-      // document.getElementById('startLon').innerHTML = currentLocation.longitude;
       this.props.findFood(currentLocation.latitude, currentLocation.longitude)
     })
   };
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.userLocations !== nextProps.userLocations) {
+      return true;
+    }
+    if (this.props.nearBy !== nextProps.nearBy){
+      return true;
+    }
+    return false;
+  };
+
 
   render() {
-    const foodList = this.props.nearBy ? this.props.nearBy : []
+    let {nearBy, userLocations} = this.props;
+    let foodList1 = nearBy ? nearBy : [];
+    let foodList2 = userLocations ? userLocations : [];
+
+    let foodList = foodList2.length > 0 ? foodList2 : foodList1;
 
     const allFood = foodList.map((food, i) => {
       return <FoodCard key={ i } {...food}/>
@@ -39,10 +46,10 @@ export class WelcomePage extends Component{
         <div className="welcome-page">
           <p>You are currently in</p>
           <MyMap />
-          <h2>In Your Area</h2>
-          <div className="card-container">
-            {allFood}
-          </div>
+          <h2>In the Area</h2>
+            <div className="card-container">
+            { allFood }
+            </div>
         </div>
       }
       {

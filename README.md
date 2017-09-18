@@ -21,6 +21,9 @@ react-scripts
 redux
 redux-thunk
 
+## Waffle/Issues
+-[Waffle](https://waffle.io/danalvarez5280/foodgrader)
+
 ## WireFrames
 -[Moqups Link](https://app.moqups.com/danalvarez5280@gmail.com/0Nnqb5gJTp/edit/page/ad64222d5)
 

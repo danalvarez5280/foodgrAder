@@ -25,7 +25,7 @@ redux-thunk
 -[Moqups Link](https://app.moqups.com/danalvarez5280@gmail.com/0Nnqb5gJTp/edit/page/ad64222d5)
 
 ## UI
-[My App](file:///Users/BendersShadow/Desktop/Campaign/FoodGrader.png)
+-[My App](file:///Users/BendersShadow/Desktop/Campaign/FoodGrader.png)
 
 ## OverView
 

@@ -20,7 +20,7 @@ const FoodCard = ({ restaurant, setLocation }) => {
       <h3>Average Cost For Two:</h3>
       <p>${ restaurant.average_cost_for_two }</p>
       <h3>Average Rating:</h3>
-      <p>{restaurant.user_rating.aggregate_rating}</p>
+      <p>{restaurant.user_rating.aggregate_rating}/5</p>
       <h3>Total Reviews</h3>
       <p>{restaurant.user_rating.votes}</p>
       <h3>Its...</h3>

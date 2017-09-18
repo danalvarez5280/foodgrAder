@@ -24,18 +24,23 @@ export class WelcomePage extends Component{
     if (this.props.nearBy !== nextProps.nearBy){
       return true;
     }
+    if(this.props.userInfo !== nextProps.userInfo){
+      return true;
+    }
     return false;
   };
 
 
   render() {
-    let {nearBy, userLocations} = this.props;
+    let {nearBy, userLocations, userInfo} = this.props;
     let foodList1 = nearBy ? nearBy : [];
     let foodList2 = userLocations ? userLocations : [];
+    let userList = userInfo ? userInfo : [];
 
     let foodList = foodList2.length > 0 ? foodList2 : foodList1;
+    let finalList = userList.length > 0 ? userList : foodList;
 
-    const allFood = foodList.map((food, i) => {
+    const allFood = finalList.map((food, i) => {
       return <FoodCard key={ i } {...food}/>
     })
 
@@ -46,7 +51,7 @@ export class WelcomePage extends Component{
         <div className="welcome-page">
           <p>You are currently in</p>
           <MyMap />
-          <h2>In the Area</h2>
+          <h2 id="area">Restaurants</h2>
             <div className="card-container">
             { allFood }
             </div>
@@ -54,7 +59,9 @@ export class WelcomePage extends Component{
       }
       {
         (this.props.location === undefined) &&
-        <img className="loading" src='https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif' />
+        <div className="loading-screen">
+          <img className="loading" src='https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif' alt="avocados dancing loading page"/>
+        </div>
       }
       </div>
     )

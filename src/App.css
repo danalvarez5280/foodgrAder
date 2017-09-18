@@ -60,13 +60,27 @@ h1:hover,
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 20px;
   max-width: 900px;
 }
 
+@keyframes dissolve {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .food-card {
+  animation-name: dissolve;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
   background-color: #F6F7EB;
   margin: 10px;
   min-height: 500px;
+  padding-bottom: 5px;
   transition-duration: 1s;
   width: 250px;
 }

@@ -30,6 +30,16 @@ export const userSearch = (state = [], action) => {
   }
 }
 
+export const userFoodSearch = (state = [], action) => {
+  switch (action.type) {
+    case 'FOOD_SEARCH':
+      return [...state, action.places]
+
+    default:
+      return state
+  }
+}
+
 export const setLink = (state = '', action) => {
   switch (action.type) {
     case 'SET_LINK':

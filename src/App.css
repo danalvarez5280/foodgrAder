@@ -1,37 +1,71 @@
 .App {
+  align-items: center;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
-h1 {
-  background-color: blue;
-  color: white;
+
+h1{
+  color: #FFFFFF;
   font-family: 'Indie Flower', cursive;
   margin: 0;
   text-shadow: 1px 1px 5px black;
+  transition-duration: 1s;
 }
 
 .nav-bar {
-  background-color: blue;
+  background-color: #2274A5;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin-top: 0;
+  width: 900px;
 }
 .nav {
-  color: white;
+  color: #FFFFFF;
   font-family: 'Indie Flower', cursive;
-  font-size: 1.7em;
+  font-size: 2em;
+  margin-bottom: 10px;
   text-decoration: none;
   text-shadow: 1px 1px 5px black;
   transition-duration: 1s;
 }
 
+h1:hover,
 .nav:hover {
-  color: orange;
+  color: #FFBF00;
   transform: scale(1.1);
   transition-duration: 1s;
 }
-/*.nav-text {
-  color: white;
-  font-family: 'Indie Flower', cursive;
-  text-decoration: none;
-}*/
+
+.welcome-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 600px;
+}
+
+.food-card {
+  border: 2px solid #2274A5;
+  border-radius: 15px 15px;
+  margin: 10px;
+  transition-duration: 1s;
+  width: 250px;
+}
+
+.food-card:hover {
+  transform: scale(1.1);
+  transition-duration: 1s;
+}

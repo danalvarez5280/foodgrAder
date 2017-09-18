@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import MainContainer from '../containers/MainContainer';
+import firebase from '../firebase.js';
 
 export class Login extends Component {
   constructor() {
@@ -21,22 +22,25 @@ export class Login extends Component {
   render() {
     return(
       <div>
-        <form>
+        <form className="user-page">
           <input
+            className='input-field'
             title='email' type="email" value={this.state.email}
             placeholder="email"
             onChange={(e) => this.grabInfo(e)} />
           <input
+            className='input-field'
             title='password' type="password" value={this.state.password}
             placeholder="password"
             onChange={(e) => this.grabInfo(e)} />
-          <button className='form-button'>
-              Log In
-          </button>
+          <input
+          className='input-field form-button'
+          type='button'
+          value='LOG IN'/>
         </form>
       </div>
     )
   }
 };
 
-export default Login;
+export default MainContainer(Login);

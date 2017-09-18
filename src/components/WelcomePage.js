@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainContainer from '../containers/MainContainer';
 import FoodCard from './FoodCard';
-import Iframe from 'react-iframe';
+// import Iframe from 'react-iframe';
 import MyMap from './Map';
 import './styles.css'
 
@@ -10,36 +10,45 @@ import './styles.css'
 // import googleMapsKey from '../key/googleMapsKey';
 
 export class WelcomePage extends Component{
-  constructor() {
-    super()
-  };
 
   componentDidMount() {
-
+        this.getPosition()
   }
 
-  arrayFunc() {
-    return [
-      {name: 'Chipotle', cuisine: 'mexican', grade: 'A+'},
-      {name: 'SmashBurger', cuisine: 'american', grade: 'A'},
-      {name: 'Spanellis', cuisine: 'deli', grade: 'A+'},
-      {name: 'Arbys', cuisine: 'garbage', grade: 'F-'},
-      {name: 'MacDowells', cuisine: 'garbage', grade: 'F'}
-    ]
-  }
+  getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let currentLocation = position.coords
+      // document.getElementById('startLat').innerHTML = currentLocation.latitude;
+      // document.getElementById('startLon').innerHTML = currentLocation.longitude;
+      this.props.findFood(currentLocation.latitude, currentLocation.longitude)
+    })
+  };
 
 
   render() {
-    const allFood = this.arrayFunc().map((food, i) => {
+    const foodList = this.props.nearBy ? this.props.nearBy : []
+
+    const allFood = foodList.map((food, i) => {
       return <FoodCard key={ i } {...food}/>
     })
 
     return (
       <div>
-        <h3>Welcome to foodgrAder!</h3>
-        <p>You can search fo restaurants by...</p>
-        <MyMap />
-        {allFood}
+      {
+        (this.props.location !== undefined) &&
+        <div className="welcome-page">
+          <p>You are currently in</p>
+          <MyMap />
+          <h2>In Your Area</h2>
+          <div className="card-container">
+            {allFood}
+          </div>
+        </div>
+      }
+      {
+        (this.props.location === undefined) &&
+        <img className="loading" src='https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif' />
+      }
       </div>
     )
   }

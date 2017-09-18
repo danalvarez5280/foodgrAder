@@ -1,87 +1,72 @@
 import React, { Component } from 'react';
 import Iframe from 'react-iframe';
 import MainContainer from '../containers/MainContainer';
+// import googleMapsKey from '../key'
 import './styles.css'
 
 
 export class MyMap extends Component{
-  constructor(props){
+  constructor(){
     super();
     this.state = {
       foodName: '',
-      cuisine: '',
-      location: '',
+      query: ''
     }
-    this.getPosition = this.getPosition.bind(this);
+    // this.getPosition = this.getPosition.bind(this);
 
   }
 
-  componentDidMount(){
-    this.getPosition()
+  // componentDidMount(){
+  //   this.getPosition()
+  // }
+
+  grabLocation(query) {
+    console.log('current props', this.props);
+    // this.props.setLocation(query)
+
   }
 
-  grabInfo(e) {
-    this.setState({
-      [e.target.title]: e.target.value
-    })
-  }
 
-  grabLocation(locale) {
-    this.props.setLocation(locale)
-    return locale
-  }
-
-  getPosition() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      document.getElementById('startLat').innerHTML = position.coords.latitude;
-      document.getElementById('startLon').innerHTML = position.coords.longitude;
-      this.props.setLocation(position.coords);
-    });
-  };
+  // getPosition() {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     let currentLocation = position.coords
+  //     // document.getElementById('startLat').innerHTML = currentLocation.latitude;
+  //     // document.getElementById('startLon').innerHTML = currentLocation.longitude;
+  //     this.props.findFood(currentLocation.latitude, currentLocation.longitude)
+  //   })
+  // };
 
   render() {
-    const param1 = this.state.foodName || 'chipotle';
-    const param2 = this.state.cuisine || '';
-    const location = this.state.location || ' downtown denver';
+    const { location, nearBy } = this.props;
+    const param1 = nearBy[0].restaurant.name
+    console.log('param1', param1)
     const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDAOPlM-JOakw3AcI0FwW23r6L-Rhgc-lI&q=${param1},${location}`
     return(
       <div className="map-area">
-        <p id='startLat'></p>
-        <p id='startLon'></p>
+        <p>{this.props.neighborhood}</p>
+        <p>{this.props.location}</p>
         <div className="main-form">
           <form>
             <input
-              title='foodName' type="text" value={this.state.foodName}
-              placeholder="name"
+              className='input-field'
+              title='location' type="text" value={this.state.query}
+              placeholder="location"
               onChange={(e) => this.grabInfo(e)} />
-            <button className='form-button'
-              onClick={ (e) => {e.preventDefault();
-              this.testFunc()}}>
-                Search
-            </button>
+            <input
+              className='input-field form-button'
+              type='button'
+              onClick={ (e) => {this.grabLocation(this.state.query)}}
+              value="Where You At" />
           </form>
-          <input
-            title='cuisine' type="text" value={this.state.cuisine}
-            placeholder="cuisine"
-            onChange={(e) => this.grabInfo(e)} />
-            <form>
-              <input
-                title='location' type="text" value={this.state.location}
-                placeholder="location"
-                onChange={(e) => this.grabInfo(e)} />
-              <button className='form-button'
-                onClick={ (e) => {e.preventDefault();
-                this.grabLocation(this.state.location)}}>
-                Where You At
-              </button>
-              </form>
         </div>
-        <Iframe url={url}
-          width="450px"
-          height="450px"
-          position="relative"
-          margin="200px"
-          allowFullScreen />
+          <Iframe
+            className="map-window"
+            url={ url }
+            width="900px"
+            height="450px"
+            position="relative"
+            margin="200px"
+            allowFullScreen />
       </div>
     )
   }

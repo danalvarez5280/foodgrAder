@@ -1,15 +1,22 @@
-h3 {
-  background-color: blue;
-  color: white;
+h2, p {
+  color: #2274A5;
   font-family: 'Indie Flower', cursive;
+  font-size: 1.5em;
   margin: 0;
+  text-shadow: .5px .5px 2px black;
+}
+
+h2 {
+  background-color: #2274A5;
+  border-radius: 11px 11px 0px 0px;
+  color: #FFFFFF;
   text-shadow: 1px 1px 5px black;
 }
 
 .main-form {
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 
 }
@@ -19,4 +26,56 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.user-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-field {
+  background-color: #FFFFFF;
+  border: 1px solid #2274A5;
+  border-radius: 15px 15px;
+  box-shadow: 1px 1px 5px #2274A5;
+  color: #2274A5;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2em;
+  height: 50px;
+  margin: 10px 0;
+  padding: 5px;
+  text-align: center;
+  width: 250px;
+
+}
+
+.form-button {
+  background-color: #2274A5;
+  color: #FFFFFF;
+  transition-duration: 1s;
+  width: 300px;
+}
+
+.form-button:hover {
+  border-color: #FFBF00;
+  background-color: #FFBF00;
+  color: #2274A5;
+  cursor: pointer;
+  transform: scale(1.1);
+  transition-duration: 1s;
+}
+
+.food-image {
+  height: 90px;
+  width: 120px;
+}
+
+Iframe {
+  border: 1px solid black;
+  border-radius: 15px 15px;
+}
+
+.map-window {
 }

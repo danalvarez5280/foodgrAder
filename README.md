@@ -27,7 +27,7 @@ redux-thunk
 ## UI
 
 ![ScreenShot of App](campaign/FoodGrader.png?raw=true "ScreenShot of App")
-
+[My App](file:///Users/BendersShadow/Desktop/Campaign/FoodGrader.png)
 
 ## OverView
 

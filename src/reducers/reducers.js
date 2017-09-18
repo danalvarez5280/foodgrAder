@@ -11,20 +11,30 @@ export const foodFetch1 = (state = {}, action) => {
 
 
 export const setLocation = (state={}, action) => {
-  console.log('user locale', action.location)
   switch(action.type) {
     case 'SET_LOCATION':
-    return Object.assign({}, state, action.location)
+      return Object.assign({}, state, action.location)
 
     default:
-    return state
+      return state
   }
 };
 
-export const mapUrl = (state='', action) => {
+export const userSearch = (state = [], action) => {
+  switch(action.type) {
+    case 'USER_FETCH':
+    return [...state, action.newFoodInfo]
+
+    default:
+      return state
+  }
+}
+
+export const setLink = (state = '', action) => {
   switch (action.type) {
-    case 'MAP_FETCH':
-    return action.url
+    case 'SET_LINK':
+    console.log('link1', action.link);
+      return action.link
 
     default:
       return state

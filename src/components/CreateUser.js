@@ -18,10 +18,6 @@ class CreateUser extends Component {
     this.grabInfo = this.grabInfo.bind(this)
   };
 
-  componentDidMount() {
-
-  }
-
   grabInfo(e) {
     this.setState({
       [e.target.title]: e.target.value
@@ -72,7 +68,7 @@ class CreateUser extends Component {
             className='input-field form-button'
             onClick={ (e) => this.handleSubmit(e)}
             type="button"
-            value="CREATE USER" />
+            value="Create User" />
         </form>
       </div>
     )

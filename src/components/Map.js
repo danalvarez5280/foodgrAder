@@ -13,31 +13,44 @@ export class MyMap extends Component{
       userLocation: '',
     }
   }
+  // const { userInput, userLocation} = this.state
 
-  grabLocation(object) {
-    this.props.setLocation(object)
-    this.props.userSearch(object.userLocation)
-    this.props.userFoodSearch({userInput: undefined, userLocation: undefined})
+  grabLocation() {
+    if (this.state.userInput === '' && this.state.userLocation === '') {
+      alert("Hey Dummy! What are you looking for?")
+    }
+    else {
+      this.userInfo()
+    }
+    console.log('store', this.props);
+  }
+
+  userInfo() {
+    const foodPlace = this.state.userInput === '' ? '' : this.state.userInput;
+    const foodLocation = this.state.userLocation === '' ? this.props.location : this.state.userLocation;
+    console.log('food and location', foodPlace, foodLocation);
+    // this.props.setLocation({
+    //   userInput: foodPlace,
+    //   userLocation: foodLocation,
+    // })
+    this.props.userSearch(foodPlace, foodLocation);
+  }
+
+  resetSearch() {
+    this.getPosition()
+    this.props.setLocation({userInput: undefined, userLocation: undefined})
     this.setState({
       userInput: '',
       userLocation: '',
     })
   }
 
-  userInfo(object) {
-    this.props.setLocation(object)
-    this.props.userFoodSearch(object.userInput, this.props.cityId)
-    this.setState({
-      userInput: '',
-      userLocation: '',
+  getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let currentLocation = position.coords
+      this.props.findFood(currentLocation.latitude, currentLocation.longitude)
     })
-  }
-
-  resetSearch(object) {
-    this.props.setLocation(object)
-    this.props.userFoodSearch(object.userInput, object.userLocation)
-    this.props.locationClear(object.userLocation)
-  }
+  };
 
   grabInfo(e) {
     this.setState({
@@ -46,47 +59,36 @@ export class MyMap extends Component{
   }
 
   render() {
-    const { location, nearBy, userInput, userLocation, userLocations } = this.props;
-    const autoParam = nearBy[0].restaurant.name;
-    const userSelection = userLocations ? userLocations[0].restaurant.name : autoParam;
-    const autoLocation = location;
-    const locationParam = userLocation ? userLocation : autoLocation;
-    const userParam = userInput ? userInput : userSelection;
-    const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDAOPlM-JOakw3AcI0FwW23r6L-Rhgc-lI&q=${userParam},${locationParam}`
+    const { location, nearBy, userInput } = this.props;
+    const param1 = userInput ? userInput : nearBy[0].restaurant.name;
+    const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDAOPlM-JOakw3AcI0FwW23r6L-Rhgc-lI&q=${param1},${location}`;
+
     return(
       <div className="map-area">
-        <p>{this.props.neighborhood}</p>
         <p>{this.props.location}</p>
         <div className="forms">
         <form className="main-form">
           <input
             className='input-field'
             title='userInput' type="text" value={this.state.userInput}
-            placeholder="search by name"
+            placeholder="food type or name"
             onChange={(e) => this.grabInfo(e)} />
-          <input
-            className='input-field form-button'
-            type='button'
-            onClick={ (e) => {this.userInfo(this.state)}}
-            value="Food Search" />
-        </form>
-          <form className="main-form">
             <input
               className='input-field'
               title='userLocation' type="text" value={this.state.userLocation}
-              placeholder="search for location"
+              placeholder="location"
               onChange={(e) => this.grabInfo(e)} />
             <input
               className='input-field form-button'
               type='button'
-              onClick={ (e) => {this.grabLocation(this.state)}}
-              value="Location Search" />
+              onClick={ (e) => this.grabLocation()}
+              value="Search" />
           </form>
         </div>
         <button
-        onClick={ () => this.resetSearch({userInput: undefined, userLocation: undefined})}
-        className='input-field form-button refresh'>
-        Reset Search
+          onClick={ () => this.resetSearch()}
+          className='input-field form-button refresh'>
+          Reset Search
         </button>
           <Iframe
             className="map-window"

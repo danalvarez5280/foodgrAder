@@ -4,11 +4,12 @@ import CreateUser from './components/CreateUser';
 import Login from './components/Login';
 // import MoreInfo from './components/MoreInfo';
 import { Route, NavLink} from 'react-router-dom';
-
+import MoreInfo from './components/MoreInfo';
 import './App.css';
 
 class App extends Component {
   render() {
+
     return (
       <div className="App">
         <header className='nav-bar'>
@@ -24,8 +25,9 @@ class App extends Component {
           </div>
         </header>
         <Route exact path='/' component={ WelcomePage } />
-        <Route exact path='/login' component={ Login } />
-        <Route exact path='/createuser' component={ CreateUser } />
+        <Route path='/login' component={ Login } />
+        <Route path='/createuser' component={ CreateUser } />
+        <Route path='/restaurant_detail/:restaurant_id' component={ MoreInfo } />
 
       </div>
     );

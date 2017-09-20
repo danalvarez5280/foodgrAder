@@ -20,9 +20,9 @@ export const setLocation = (state={}, action) => {
   }
 };
 
-export const userSearch = (state = [], action) => {
+export const userQuery = (state = [], action) => {
   switch(action.type) {
-    case 'USER_FETCH':
+    case 'USER_QUERY':
     return [...state, action.newFoodInfo]
 
     default:
@@ -30,21 +30,10 @@ export const userSearch = (state = [], action) => {
   }
 }
 
-export const userFoodSearch = (state = [], action) => {
+export const userSearch = (state = [], action) => {
   switch (action.type) {
     case 'FOOD_SEARCH':
       return [...state, action.places]
-
-    default:
-      return state
-  }
-}
-
-export const setLink = (state = '', action) => {
-  switch (action.type) {
-    case 'SET_LINK':
-    console.log('link1', action.link);
-      return action.link
 
     default:
       return state

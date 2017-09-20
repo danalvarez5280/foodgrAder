@@ -7,7 +7,9 @@ import './styles.css'
 export class WelcomePage extends Component{
 
   componentDidMount() {
-        this.getPosition()
+    if(this.props.location === undefined){
+      this.getPosition()
+    }
   }
 
   getPosition() {
@@ -18,38 +20,33 @@ export class WelcomePage extends Component{
   };
 
   shouldComponentUpdate(nextProps) {
-    if (this.props.userLocations !== nextProps.userLocations) {
-      return true;
+    const locationChange = (
+      this.props.userLocations !== nextProps.userLocations ||
+      this.props.nearBy !== nextProps.nearBy ||
+      this.props.userInfo !== nextProps.userInfo
+    )
+
+    if (locationChange) {
+      return true
     }
-    if (this.props.nearBy !== nextProps.nearBy){
-      return true;
-    }
-    if(this.props.userInfo !== nextProps.userInfo){
-      return true;
-    }
-    return false;
+    return false
   };
 
 
   render() {
-    let {nearBy, userLocations, userInfo} = this.props;
-    let foodList1 = nearBy ? nearBy : [];
-    let foodList2 = userLocations ? userLocations : [];
-    let userList = userInfo ? userInfo : [];
+    let {nearBy, location} = this.props;
+    let nearByList = nearBy ? nearBy : [];
 
-    let foodList = foodList2.length > 0 ? foodList2 : foodList1;
-    let finalList = userList.length > 0 ? userList : foodList;
-
-    const allFood = finalList.map((food, i) => {
+    const allFood = nearByList.map((food, i) => {
       return <FoodCard key={ i } {...food}/>
     })
 
     return (
       <div>
       {
-        (this.props.location !== undefined) &&
+        (location !== undefined) &&
         <div className="welcome-page">
-          <p>You are currently in</p>
+          <p>You are currently searching in</p>
           <MyMap />
           <h2 id="area">Restaurants</h2>
             <div className="card-container">
@@ -58,7 +55,7 @@ export class WelcomePage extends Component{
         </div>
       }
       {
-        (this.props.location === undefined) &&
+        (location === undefined) &&
         <div className="loading-screen">
           <img className="loading" src='https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif' alt="avocados dancing loading page"/>
         </div>

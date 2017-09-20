@@ -1,34 +1,64 @@
 import React from 'react'
 import MainContainer from '../containers/MainContainer';
-// import { Link } from 'react-router-dom'
-// import { Route, NavLink} from 'react-router-dom';
-// import MoreInfo from './MoreInfo'
-
+import { Link } from 'react-router-dom';
 
 const FoodCard = ({ restaurant, setLocation }) => {
-  const link = `${restaurant.menu_url}`;
+  const getLetter = () => {
+    const ratingGrade = parseFloat(restaurant.user_rating.aggregate_rating)
+    const letterGrade = ((ratingGrade / 5) * 100)
+    const votes = parseInt(restaurant.user_rating.votes);
+    if(votes === 0){
+      return "No Grade"
+    }
+    else if (letterGrade > 90) {
+      return "A"
+    }
+    else if (letterGrade > 79) {
+      return "B+"
+    }
+    else if (letterGrade > 75) {
+      return "B"
+    }
+    else if (letterGrade > 70) {
+      return "B-"
+    }
+    else if (letterGrade > 66) {
+      return "C+"
+    }
+    else if (letterGrade > 62) {
+      return "C"
+    }
+    else if (letterGrade > 59) {
+      return "C-"
+    }
+    else if (letterGrade > 50) {
+      return "D+"
+    }
+    else if (letterGrade > 45) {
+      return "D"
+    }
+    else if (letterGrade > 39) {
+      return "D"
+    }
+    else {
+      return "F"
+    }
+  }
+
   return (
     <div className="food-card"
-      onClick={ () => setLocation({userInput: restaurant.name,
-      userLocation: restaurant.location.locality})}>
+      onClick={ () => setLocation({
+        userInput: restaurant.name,
+        userLocation: restaurant.location.locality
+      })}>
       <h2>{ restaurant.name }</h2>
-      <p><img className='food-image' src={restaurant.featured_image} alt="restaurant img"/></p>
-      <h3>Cuisine Type:</h3>
-      <p>{ restaurant.cuisines }</p>
-      <h3>Address</h3>
-      <p>{ restaurant.location.address }</p>
-      <h3>Average Cost For Two:</h3>
-      <p>${ restaurant.average_cost_for_two }</p>
-      <h3>Average Rating:</h3>
-      <p>{restaurant.user_rating.aggregate_rating}/5</p>
-      <h3>Total Reviews</h3>
-      <p>{restaurant.user_rating.votes}</p>
-      <h3>Its...</h3>
-      <p>{restaurant.user_rating.rating_text}</p>
-      <a href={link} target="_blank">Menu</a>
+      <p><img className='food-image' src={restaurant.thumb} alt="restaurant img"/></p>
+      <p>{getLetter()}</p>
+      <Link to={`restaurant_detail/${restaurant.id}`}>
+      More Info
+      </Link>
     </div>
   )
 }
 
-// <Route exact path={link} render={ () => <MoreInfo info={restaurant} /> } />
 export default MainContainer(FoodCard);

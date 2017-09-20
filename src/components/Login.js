@@ -36,7 +36,7 @@ export class Login extends Component {
           <input
           className='input-field form-button'
           type='button'
-          value='LOG IN'/>
+          value='Log In'/>
         </form>
       </div>
     )

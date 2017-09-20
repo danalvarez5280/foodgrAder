@@ -1,14 +1,17 @@
 .App {
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #F6F7EB;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
+body {
+  background-color: #F6F7EB;
+}
 
 h1{
-  color: #FFFFFF;
+  color: #F6F7EB;
   font-family: 'Rokkitt', serif;
   margin: 0;
   text-shadow: 1px 1px 5px black;
@@ -25,7 +28,7 @@ h1{
 }
 
 .nav {
-  color: #FFFFFF;
+  color: #F6F7EB;
   /*display: flex;
   flex-direction: row;*/
   font-family: 'Rokkitt', serif;
@@ -78,17 +81,17 @@ h1:hover,
   animation-duration: 3s;
   animation-iteration-count: 1;
   background-color: #F6F7EB;
+  height: 220px;
   margin: 10px;
-  min-height: 500px;
   padding-bottom: 5px;
-  transition-duration: 1s;
-  width: 250px;
+  width: 270px;
 }
 
 .food-card:hover {
+  border: 3px solid #FFBF00;
+  height: 214px;
+  width: 264px;
   opacity: 1;
-  transform: scale(1.05);
-  transition-duration: 1s;
 }
 
 .left-nav{

@@ -26,6 +26,13 @@ export const signOut = (user) => {
   }
 }
 
+export const addFaves = (favorite) => {
+  return {
+    type: 'ADD_FAVE',
+    favorite
+  }
+}
+
 export const submitSearch = (latitude, longitude) => {
   return dispatch => {
     const reqHeaders = new Headers();

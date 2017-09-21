@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import MainContainer from '../containers/MainContainer';
 // import firebase from '../firebase.js';
 
@@ -7,7 +7,7 @@ export class Login extends Component {
   constructor() {
     super()
     this.state = {
-      email: '',
+      userName: '',
       password: '',
     }
   };
@@ -16,17 +16,27 @@ export class Login extends Component {
     this.setState({
       [e.target.title]: e.target.value
     })
+  };
+
+  logIn() {
+    this.props.signIn({
+      userName: this.state.userName,
+      loggedIn: true,
+    })
   }
 
-
   render() {
+    if(this.props.loggedIn) {
+      // localStorage.setItem('user', (JSON.stringify(this.props.user)))
+      return <Redirect to='/' />
+    };
     return(
       <div>
         <form className="user-page">
           <input
             className='input-field'
-            title='email' type="email" value={this.state.email}
-            placeholder="email"
+            title='userName' type="text" value={this.state.email}
+            placeholder="User Name"
             onChange={(e) => this.grabInfo(e)} />
           <input
             className='input-field'
@@ -34,9 +44,10 @@ export class Login extends Component {
             placeholder="password"
             onChange={(e) => this.grabInfo(e)} />
           <input
-          className='input-field form-button'
-          type='button'
-          value='Log In'/>
+            onClick={ () => this.logIn()}
+            className='input-field form-button'
+            type='button'
+            value='Log In'/>
         </form>
       </div>
     )

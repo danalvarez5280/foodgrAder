@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainContainer from '../containers/MainContainer';
 import FoodCard from './FoodCard';
 import MyMap from './Map';
+// import Navigation from './Navigation';
 import './styles.css'
 
 export class WelcomePage extends Component{
@@ -39,15 +40,15 @@ export class WelcomePage extends Component{
     const allFood = nearByList.map((food, i) => {
       return <FoodCard key={ i } {...food}/>
     })
-
     return (
       <div>
+
       {
         (location !== undefined) &&
         <div className="welcome-page">
           <p>You are currently searching in</p>
           <MyMap />
-          <h2 id="area">Restaurants</h2>
+          <h1 id="area">Restaurants</h1>
             <div className="card-container">
             { allFood }
             </div>

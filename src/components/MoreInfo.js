@@ -11,22 +11,41 @@ class MoreInfo extends Component {
       return elem.restaurant.id === restId })
     return (
       <div className='moreinfo-rest'>
-        <h2>{ place.restaurant.name }</h2>
-        <h3>Cuisine Type</h3>
-        <p>{ place.restaurant.cuisines }</p>
-        <h3>Address</h3>
-        <p>{ place.restaurant.location.address }</p>
-        <h3>Average Cost For Two:</h3>
-        <p>${ place.restaurant.average_cost_for_two }</p>
-        <h3>Average Rating:</h3>
-        <p>{place.restaurant.user_rating.aggregate_rating}/5</p>
-        <h3>Total Reviews</h3>
-        <p>{place.restaurant.user_rating.votes}</p>
-        <h3>Its...</h3>
-        <p>{place.restaurant.user_rating.rating_text}</p>
-        <Link to='/'>
-          Back
-        </Link>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td>{ place.restaurant.name }</td>
+          </tr>
+          <tr>
+            <td>Cuisine Type:</td>
+            <td>{ place.restaurant.cuisines }</td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td>{ place.restaurant.location.address }</td>
+          </tr>
+          <tr>
+            <td>Average Cost for Two:</td>
+            <td>{ place.restaurant.average_cost_for_two }</td>
+          </tr>
+          <tr>
+            <td>Average Rating:</td>
+            <td>{place.restaurant.user_rating.aggregate_rating}/5</td>
+          </tr>
+          <tr>
+            <td>Total Reviews:</td>
+            <td>{place.restaurant.user_rating.votes}</td>
+          </tr>
+          <tr>
+            <td>Its..</td>
+            <td>{place.restaurant.user_rating.rating_text}</td>
+          </tr>
+          <tr colspan='2' className='nav2'>
+              <Link className='nav' to='/'>
+                BACK
+              </Link>
+          </tr>
+        </table>
       </div>
     )
   }

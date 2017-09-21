@@ -29,10 +29,10 @@ export class MyMap extends Component{
     const foodPlace = this.state.userInput === '' ? '' : this.state.userInput;
     const foodLocation = this.state.userLocation === '' ? this.props.location : this.state.userLocation;
     console.log('food and location', foodPlace, foodLocation);
-    // this.props.setLocation({
-    //   userInput: foodPlace,
-    //   userLocation: foodLocation,
-    // })
+    this.props.setLocation({
+      userInput: foodPlace,
+      userLocation: foodLocation,
+    })
     this.props.userSearch(foodPlace, foodLocation);
   }
 

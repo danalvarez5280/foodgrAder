@@ -5,7 +5,6 @@ import MyMap from './Map';
 import './styles.css'
 
 export class WelcomePage extends Component{
-
   componentDidMount() {
     if(this.props.location === undefined){
       this.getPosition()

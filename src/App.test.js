@@ -6,28 +6,30 @@ import App from './App';
 import WelcomePage from './components/WelcomePage';
 import MyMap from './components/Map';
 import FoodCard from './components/FoodCard';
-import submitSearch from './actions/submitSearch'
+// import { store } from './index.js'
+
 
 describe('my tests', () => {
-  const wrapper =  withRouter(<App />)
-  const wrapperWelcome = withRouter(<WelcomePage />)
-  const wrapperMap = withRouter(<MyMap />)
-  const wrapperCard = withRouter(<FoodCard />)
+  const wrapper =  withRouter(<App />);
+  const wrapperWelcome = withRouter(<WelcomePage />);
+  const wrapperMap = withRouter(<MyMap />);
+  const wrapperCard = withRouter(<FoodCard />);
   const fetchMock = require('fetch-mock');
 
   it('renders without crashing', () => {
     expect(wrapper).toBeDefined()
+  });
+
+  it('should display the welcome page after it renders', () => {
     expect(wrapperWelcome).toBeDefined()
+  });
+
+  it('should display the may when the welcome page loads', () => {
     expect(wrapperMap).toBeDefined()
+  });
+
+  it('should display the food cards', ()=> {
     expect(wrapperCard).toBeDefined()
   });
 
-  it('should render a card', () => {
-    expect(wrapperCard.length).toEqual(1)
-  });
-
-  it('should make an inital fetch call', () => {
-    
-  })
-
-})
+});

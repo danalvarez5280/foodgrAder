@@ -14,7 +14,6 @@ h1{
   color: #F6F7EB;
   font-family: 'Rokkitt', serif;
   margin: 0;
-  text-shadow: 1px 1px 5px black;
   transition-duration: 1s;
 }
 
@@ -35,8 +34,14 @@ h1{
   font-size: 2em;
   margin: 10px 20px 10px 0;
   text-decoration: none;
-  text-shadow: 1px 1px 5px black;
   transition-duration: 1s;
+}
+
+.nav2 {
+  background-color: #E94F37;
+  color: #E94F37;
+  text-align: center;
+  width: 100%;
 }
 
 h1:hover,
@@ -52,6 +57,11 @@ h1:hover,
   justify-content: center;
 }
 
+#area {
+  background-color: #2274A5;
+  color: #E94F37;
+  width: 100%;
+}
 
 .card-container {
   align-items: center;
@@ -74,23 +84,88 @@ h1:hover,
 }
 
 .food-card {
+  align-items: center;
   animation-name: dissolve;
   animation-duration: 3s;
   animation-iteration-count: 1;
   background-color: #F6F7EB;
-  height: 220px;
+  display: flex;
+  flex-direction: column;
+  height: 260px;
   margin: 10px;
   padding-bottom: 5px;
-  width: 270px;
+  width: 280px;
 }
 
 .food-card:hover {
-  border: 3px solid #FFBF00;
-  height: 214px;
-  width: 264px;
-  opacity: 1;
+  border: 5px solid #FFBF00;
+  cursor: pointer;
+  height: 250px;
+  width: 270px;
 }
 
+.food-card-selected {
+  border: 5px solid #FFBF00;
+  height: 250px;
+  width: 270px;
+}
+
+.rest-name {
+  margin: 0;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.grade {
+  color:#E94F37;
+  font-size: 2em;
+  text-shadow: none;
+}
+
+.heart-icon, .info-icon, .heart-icon-pink, .find-icon, .find-icon-pink {
+  background-image: url('./components/assets/heart-blue.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50px;
+  margin: 10px;
+  transition-duration: .5s;
+  width: 50px;
+}
+
+.heart-icon-pink {
+  background-image: url('./components/assets/heart-pink.svg');
+}
+
+.info-icon {
+  background-image: url('./components/assets/info-blue.svg');
+}
+
+.find-icon {
+  background-image: url('./components/assets/find.svg');
+}
+
+.find-icon:hover {
+  background-image: url('./components/assets/find-pink.svg');
+  transition-duration: .5s;
+}
+
+.find-icon-pink {
+  background-image: url('./components/assets/find-pink.svg');
+}
+
+.heart-icon:hover{
+  background-image: url('./components/assets/heart-pink.svg');
+  transition-duration: .5s;
+}
+
+.info-icon:hover {
+  background-image: url('./components/assets/info-yellow.svg');
+  transition-duration: .5s;
+}
 .left-nav{
   display: flex;
   flex-direction: row;
@@ -105,7 +180,7 @@ h1:hover,
 }
 
 .icon {
-  background-image:url('./components/assets/white-fork.svg');
+  background-image: url('./components/assets/white-fork.svg');
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;

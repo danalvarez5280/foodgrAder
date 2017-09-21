@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import MainContainer from '../containers/MainContainer';
 import firebase from '../firebase.js';
 import './styles.css'
@@ -8,11 +8,8 @@ class CreateUser extends Component {
   constructor() {
     super()
     this.state = {
-      email: '',
       userName: '',
-      location: '',
       password: '',
-      favorites: [],
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.grabInfo = this.grabInfo.bind(this)
@@ -25,13 +22,17 @@ class CreateUser extends Component {
   };
 
   handleSubmit(e) {
-  e.preventDefault();
-  const userRef = firebase.database().ref('user');
-  const user = {
-    email: this.state.email,
-    userName: this.state.userName,
-  }
+    e.preventDefault();
+    const userRef = firebase.database().ref('user');
+    const user = {
+      favorites: [],
+      userName: this.state.userName,
+    }
   userRef.push(user);
+  this.props.signIn({
+    userName: this.state.userName,
+    loggedIn: true,
+  })
   this.setState({
     email: '',
     userName: '',
@@ -41,23 +42,17 @@ class CreateUser extends Component {
 };
 
   render() {
+    if(this.props.loggedIn) {
+      // localStorage.setItem('user', (JSON.stringify(this.props.user)))
+      return <Redirect to='/' />
+    };
     return(
       <div>
         <form className="user-page">
           <input
             className='input-field'
-            title='email' type="email" value={this.state.email}
-            placeholder="email"
-            onChange={(e) => this.grabInfo(e)} />
-          <input
-            className='input-field'
             title='userName' type="text" value={this.state.userName}
             placeholder="user name"
-            onChange={(e) => this.grabInfo(e)} />
-          <input
-            className='input-field'
-            title='location' type="text" value={this.state.location}
-            placeholder="location"
             onChange={(e) => this.grabInfo(e)} />
           <input
             className='input-field'

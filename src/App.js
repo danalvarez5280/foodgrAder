@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Navigation from './components/Navigation';
 import { Route } from 'react-router-dom';
 import MoreInfo from './components/MoreInfo';
+import Favorites from './components/Favorites';
 import './App.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <Route path='/login' component={ Login } />
         <Route path='/createuser' component={ CreateUser } />
         <Route path='/restaurant_detail/:restaurant_id' component={ MoreInfo } />
+        <Route path='/favorites' component={ Favorites } />
       </div>
     );
   }

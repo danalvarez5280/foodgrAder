@@ -3,16 +3,12 @@ import MainContainer from '../containers/MainContainer';
 import { Link } from 'react-router-dom';
 
 class MoreInfo extends Component {
-  // constructor() {
-  //   super();
-  // }
 
   render() {
-    const { userLocations, nearBy, match } = this.props;
+    const { nearBy, match } = this.props;
     const restId = match.params.restaurant_id;
-    const places = userLocations ? userLocations : nearBy;
-    const place = places.find(elem => {
-      return elem.restaurant.id=== restId })
+    const place = nearBy.find(elem => {
+      return elem.restaurant.id === restId })
     return (
       <div className='moreinfo-rest'>
         <h2>{ place.restaurant.name }</h2>

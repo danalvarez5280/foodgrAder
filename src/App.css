@@ -55,9 +55,6 @@ h1:hover,
 
 .card-container {
   align-items: center;
-  /*background-image: url('./components/assets/fork.svg');*/
-  /*background-position: top;
-  background-repeat: repeat-y;*/
   background-color: #E94F37;
   background-size: contain;
   display: flex;

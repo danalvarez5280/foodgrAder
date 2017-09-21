@@ -1,7 +1,7 @@
 
-export const foodFetch1 = (state = {}, action) => {
+export const foodFetch = (state = {}, action) => {
   switch (action.type) {
-    case 'FOOD_FETCH_1':
+    case 'FOOD_FETCH':
       return Object.assign({}, state, action.foodInfo)
 
     default:
@@ -20,16 +20,6 @@ export const setLocation = (state={}, action) => {
   }
 };
 
-export const userQuery = (state = [], action) => {
-  switch(action.type) {
-    case 'USER_QUERY':
-    return [...state, action.newFoodInfo]
-
-    default:
-      return state
-  }
-}
-
 export const userSearch = (state = [], action) => {
   switch (action.type) {
     case 'FOOD_SEARCH':
@@ -38,4 +28,4 @@ export const userSearch = (state = [], action) => {
     default:
       return state
   }
-}
+};
